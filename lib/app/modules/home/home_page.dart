@@ -1,6 +1,6 @@
 import 'package:course_app/app/constants.dart';
-import 'package:course_app/app/model/category.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -48,42 +48,44 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
             ),
             SizedBox(height: 20),
             Expanded(
-              child: StaggeredGridView.countBuilder(
-                padding: EdgeInsets.all(1),
-                crossAxisCount: 2,
-                itemCount: categories.length,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-                itemBuilder: (context, index) {
-                  return Container(
-                    padding: EdgeInsets.all(20),
-                    height: index.isEven ? 200 : 240,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      image: DecorationImage(
-                        image: AssetImage(categories[index].image),
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          categories[index].name,
-                          style: kTitleTextStyle,
+              child: Observer(builder: (_) {
+                return StaggeredGridView.countBuilder(
+                  padding: EdgeInsets.all(1),
+                  crossAxisCount: 2,
+                  itemCount: controller.categories.length,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      padding: EdgeInsets.all(20),
+                      height: index.isEven ? 200 : 240,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        image: DecorationImage(
+                          image: AssetImage(controller.categories[index].image),
+                          fit: BoxFit.contain,
                         ),
-                        Text(
-                          '${categories[index].numOfCourses} recursos',
-                          style: TextStyle(
-                            color: kTextColor.withOpacity(.5),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            controller.categories[index].name,
+                            style: kTitleTextStyle,
                           ),
-                        )
-                      ],
-                    ),
-                  );
-                },
-                staggeredTileBuilder: (index) => StaggeredTile.fit(1),
-              ),
+                          Text(
+                            '${controller.categories[index].numOfCourses} recursos',
+                            style: TextStyle(
+                              color: kTextColor.withOpacity(.5),
+                            ),
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                  staggeredTileBuilder: (index) => StaggeredTile.fit(1),
+                );
+              }),
             ),
           ],
         ),
