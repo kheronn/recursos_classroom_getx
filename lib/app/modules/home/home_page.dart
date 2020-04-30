@@ -56,30 +56,36 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
                   itemBuilder: (context, index) {
-                    return Container(
-                      padding: EdgeInsets.all(20),
-                      height: index.isEven ? 200 : 240,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        image: DecorationImage(
-                          image: AssetImage(controller.categories[index].image),
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            controller.categories[index].name,
-                            style: kTitleTextStyle,
+                    return InkWell(
+                      onTap: () {
+                        Modular.to.pushNamed('categoria');
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(20),
+                        height: index.isEven ? 200 : 240,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          image: DecorationImage(
+                            image:
+                                AssetImage(controller.categories[index].image),
+                            fit: BoxFit.contain,
                           ),
-                          Text(
-                            '${controller.categories[index].numOfCourses} recursos',
-                            style: TextStyle(
-                              color: kTextColor.withOpacity(.5),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              controller.categories[index].name,
+                              style: kTitleTextStyle,
                             ),
-                          )
-                        ],
+                            Text(
+                              '${controller.categories[index].numOfCourses} recursos',
+                              style: TextStyle(
+                                color: kTextColor.withOpacity(.5),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     );
                   },

@@ -1,4 +1,5 @@
 import 'package:course_app/app/app_controller.dart';
+import 'package:course_app/app/modules/categoria/categoria_module.dart';
 import 'package:course_app/app/repositories/recurso_api.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class AppModule extends MainModule {
   @override
   List<Router> get routers => [
         Router(Modular.initialRoute, module: HomeModule()),
+        Router('/categoria', module: CategoriaModule()),
       ];
 
   @override

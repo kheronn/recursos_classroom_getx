@@ -1,9 +1,18 @@
-import 'package:course_app/app/constants.dart';
 import 'package:course_app/app/widgets/course.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class DetailsScreen extends StatelessWidget {
+import '../../constants.dart';
+
+class CategoriaPage extends StatefulWidget {
+  final String title;
+  const CategoriaPage({Key key, this.title = "Categoria"}) : super(key: key);
+
+  @override
+  _CategoriaPageState createState() => _CategoriaPageState();
+}
+
+class _CategoriaPageState extends State<CategoriaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,7 +21,7 @@ class DetailsScreen extends StatelessWidget {
         decoration: BoxDecoration(
           color: Color(0xFFF5F4EF),
           image: DecorationImage(
-            image: AssetImage("assets/images/ux_big.png"),
+            image: AssetImage("assets/images/playlist.png"),
             alignment: Alignment.topRight,
           ),
         ),
@@ -59,28 +68,11 @@ class DetailsScreen extends StatelessWidget {
                       Text("4.8")
                     ],
                   ),
-                  SizedBox(height: 20),
-                  RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: "\$50 ",
-                          style: kHeadingextStyle.copyWith(fontSize: 32),
-                        ),
-                        TextSpan(
-                          text: "\$70",
-                          style: TextStyle(
-                            color: kTextColor.withOpacity(.5),
-                            decoration: TextDecoration.lineThrough,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+               
+                  ],
               ),
             ),
-            SizedBox(height: 60),
+            SizedBox(height: 10),
             Expanded(
               child: Container(
                 width: double.infinity,
@@ -88,15 +80,15 @@ class DetailsScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(50),
                   color: Colors.white,
                 ),
-                child: SingleChildScrollView(
-                  child: Stack(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(30),
+                child: Stack(
+                  children: <Widget>[
+                    SingleChildScrollView(
+                                          child: Padding(
+                        padding: const EdgeInsets.all(20),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text("Course Content", style: kTitleTextStyle),
+                            Text("Recursos", style: kTitleTextStyle),
                             SizedBox(height: 30),
                             CourseContent(
                               number: "01",
@@ -123,8 +115,8 @@ class DetailsScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
