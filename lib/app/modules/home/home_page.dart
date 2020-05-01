@@ -58,7 +58,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {
-                        Modular.to.pushNamed('categoria');
+                        Modular.to.pushNamed('categoria/${controller.categories[index].name}');
                       },
                       child: Container(
                         padding: EdgeInsets.all(20),

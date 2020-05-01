@@ -1,126 +1,95 @@
+import 'package:course_app/app/model/recurso.dart';
+import 'package:course_app/app/modules/categoria/categoria_controller.dart';
+import 'package:course_app/app/widgets/chapter_card.dart';
 import 'package:course_app/app/widgets/course.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../constants.dart';
 
 class CategoriaPage extends StatefulWidget {
-  final String title;
-  const CategoriaPage({Key key, this.title = "Categoria"}) : super(key: key);
+  final String tipo;
+  const CategoriaPage({Key key, this.tipo}) : super(key: key);
 
   @override
   _CategoriaPageState createState() => _CategoriaPageState();
 }
 
-class _CategoriaPageState extends State<CategoriaPage> {
+class _CategoriaPageState
+    extends ModularState<CategoriaPage, CategoriaController> {
+  @override
+  void initState() {
+    this.controller.tipo = widget.tipo;
+    controller.filtrar();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: Color(0xFFF5F4EF),
-          image: DecorationImage(
-            image: AssetImage("assets/images/playlist.png"),
-            alignment: Alignment.topRight,
+      body: SingleChildScrollView(
+        child: Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: Color(0xFFF5F4EF),
+            image: DecorationImage(
+              image: AssetImage("assets/images/playlist.png"),
+              alignment: Alignment.topCenter,
+            ),
           ),
-        ),
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(left: 20, top: 50, right: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      SvgPicture.asset("assets/icons/arrow-left.svg"),
-                      SvgPicture.asset("assets/icons/more-vertical.svg"),
-                    ],
-                  ),
-                  SizedBox(height: 30),
-                  ClipPath(
-                    clipper: BestSellerClipper(),
-                    child: Container(
-                      color: kBestSellerColor,
-                      padding: EdgeInsets.only(
-                          left: 10, top: 5, right: 20, bottom: 5),
-                      child: Text(
-                        "BestSeller".toUpperCase(),
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 16),
-                  Text("Design Thinking", style: kHeadingextStyle),
-                  SizedBox(height: 16),
-                  Row(
-                    children: <Widget>[
-                      SvgPicture.asset("assets/icons/person.svg"),
-                      SizedBox(width: 5),
-                      Text("18K"),
-                      SizedBox(width: 20),
-                      SvgPicture.asset("assets/icons/star.svg"),
-                      SizedBox(width: 5),
-                      Text("4.8")
-                    ],
-                  ),
-               
-                  ],
-              ),
-            ),
-            SizedBox(height: 10),
-            Expanded(
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  color: Colors.white,
-                ),
-                child: Stack(
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(left: 20, top: 70, right: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    SingleChildScrollView(
-                                          child: Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                    SizedBox(height: 90),
+                    Text(controller.tipo.toUpperCase(),
+                        style: kHeadingextStyle),
+                    SizedBox(height: 10),
+                    Observer(builder: (_) {
+                      if (controller.recursos == null ||
+                          controller.recursos.length < 1) {
+                        return Container();
+                      } else {
+                        return Row(
                           children: <Widget>[
-                            Text("Recursos", style: kTitleTextStyle),
-                            SizedBox(height: 30),
-                            CourseContent(
-                              number: "01",
-                              duration: 5.35,
-                              title: "Welcome to the Course",
-                              isDone: true,
-                            ),
-                            CourseContent(
-                              number: '02',
-                              duration: 19.04,
-                              title: "Design Thinking - Intro",
-                              isDone: true,
-                            ),
-                            CourseContent(
-                              number: '03',
-                              duration: 15.35,
-                              title: "Design Thinking Process",
-                            ),
-                            CourseContent(
-                              number: '04',
-                              duration: 5.35,
-                              title: "Customer Perspective",
-                            ),
+                            SvgPicture.asset("assets/icons/person.svg"),
+                            SizedBox(width: 5),
+                            Text(controller.recursos.length.toString())
                           ],
-                        ),
-                      ),
-                    ),
+                        );
+                      }
+                    }),
                   ],
                 ),
               ),
-            ),
-          ],
+              Observer(builder: (_) {
+                List<Recurso> list = controller.recursos;
+                if (list == null || list.isEmpty) {
+                  return Center(child: CircularProgressIndicator());
+                } else {
+                  return ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: list.length,
+                    shrinkWrap: true,
+                    itemBuilder: (_, index) {
+                      Recurso model = list[index];
+                      return ChapterCard(
+                          name: model.titulo,
+                          chapterNumber: (index + 1),
+                          tag: model.autoria,
+                          link: model.link);
+                    },
+                  );
+                }
+              }),
+            ],
+          ),
         ),
       ),
     );

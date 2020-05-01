@@ -100,24 +100,24 @@ class DetailsScreen extends StatelessWidget {
                             SizedBox(height: 30),
                             CourseContent(
                               number: "01",
-                              duration: 5.35,
+                         //     duration: 5.35,
                               title: "Welcome to the Course",
                               isDone: true,
                             ),
                             CourseContent(
                               number: '02',
-                              duration: 19.04,
+                            //  duration: 19.04,
                               title: "Design Thinking - Intro",
                               isDone: true,
                             ),
                             CourseContent(
                               number: '03',
-                              duration: 15.35,
+                            //  duration: 15.35,
                               title: "Design Thinking Process",
                             ),
                             CourseContent(
                               number: '04',
-                              duration: 5.35,
+                           //   duration: 5.35,
                               title: "Customer Perspective",
                             ),
                           ],

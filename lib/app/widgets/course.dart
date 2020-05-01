@@ -4,7 +4,7 @@ import '../constants.dart';
 
 class CourseContent extends StatelessWidget {
   final String number;
-  final double duration;
+  final String duration;
   final String title;
   final bool isDone;
   const CourseContent({
@@ -18,9 +18,9 @@ class CourseContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-          child: Padding(
+      child: Padding(
         padding: const EdgeInsets.only(bottom: 30),
-        child: Row(
+        child: Column(
           children: <Widget>[
             Text(
               number,
@@ -34,20 +34,22 @@ class CourseContent extends StatelessWidget {
               text: TextSpan(
                 children: [
                   TextSpan(
-                    text: "$duration mins\n",
+                    text: "$duration \n",
                     style: TextStyle(
                       color: kTextColor.withOpacity(.5),
-                      fontSize: 18,
-                    ),
-                  ),
-                  TextSpan(
-                    text: title,
-                    style: kSubtitleTextSyule.copyWith(
-                      fontWeight: FontWeight.w600,
-                      height: 1.5,
+                      fontSize: 14,
                     ),
                   ),
                 ],
+              ),
+            ),
+            SizedBox(height: 25,),
+            Text(
+              title,
+              overflow: TextOverflow.ellipsis,
+              style: kSubtitleTextSyule.copyWith(
+                fontWeight: FontWeight.w600,
+                height: 1.5,
               ),
             ),
             Spacer(),
