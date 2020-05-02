@@ -1,11 +1,9 @@
 import 'package:course_app/app/model/recurso.dart';
 import 'package:course_app/app/modules/categoria/categoria_controller.dart';
 import 'package:course_app/app/widgets/chapter_card.dart';
-import 'package:course_app/app/widgets/course.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../constants.dart';
 
@@ -58,7 +56,7 @@ class _CategoriaPageState
                       } else {
                         return Row(
                           children: <Widget>[
-                            SvgPicture.asset("assets/icons/person.svg"),
+                           
                             SizedBox(width: 5),
                             Text(controller.recursos.length.toString())
                           ],
@@ -83,6 +81,7 @@ class _CategoriaPageState
                           name: model.titulo,
                           chapterNumber: (index + 1),
                           tag: model.autoria,
+                          tipo: model.tipo,
                           link: model.link);
                     },
                   );

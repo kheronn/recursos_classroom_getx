@@ -16,10 +16,17 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends ModularState<HomePage, HomeController> {
   //use 'controller' variable to access controller
-
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: UserAccountsDrawerHeader(
+        accountName: Text('Kheronn Khennedy Machado'),
+        accountEmail: Text('CRTE - Wenceslau Braz'),
+        currentAccountPicture: CircleAvatar(
+          child: Image.asset("assets/images/user2.jpg"),
+        ),
+      ),
       body: Padding(
         padding: EdgeInsets.only(left: 20, top: 50, right: 20),
         child: Column(
@@ -28,7 +35,11 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                SvgPicture.asset("assets/icons/menu.svg"),
+                GestureDetector(
+                    onTap: () {
+                      _scaffoldKey.currentState.openDrawer();
+                    },
+                    child: SvgPicture.asset("assets/icons/menu.svg")),
                 //     Image.asset("assets/images/user2.jpg"),
               ],
             ),
@@ -58,7 +69,8 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {
-                        Modular.to.pushNamed('categoria/${controller.categories[index].name}');
+                        Modular.to.pushNamed(
+                            'categoria/${controller.categories[index].name}');
                       },
                       child: Container(
                         padding: EdgeInsets.all(20),

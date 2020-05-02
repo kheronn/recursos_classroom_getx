@@ -12,7 +12,7 @@ class HomeController = _HomeControllerBase with _$HomeController;
 abstract class _HomeControllerBase with Store {
   final api = Modular.get<RecursoAPI>();
 
-   @observable
+  @observable
   List<Category> categories = [];
 
   @observable
@@ -34,6 +34,12 @@ abstract class _HomeControllerBase with Store {
   int qtdAtividade;
 
   @observable
+  int qtdEquipe;
+
+  @observable
+  int qtdProblema;
+
+  @observable
   String query;
 
   _HomeControllerBase() {
@@ -51,9 +57,19 @@ abstract class _HomeControllerBase with Store {
     recursos = await api.getRecursos();
     qtdAluno =
         recursos.where((element) => element.publico == 'aluno').toList().length;
-   
+
     qtdProfessor = recursos
         .where((element) => element.publico == 'professor')
+        .toList()
+        .length;
+
+    qtdEquipe = recursos
+        .where((element) => element.publico == 'equipe')
+        .toList()
+        .length;
+
+    qtdProblema = recursos
+        .where((element) => element.categoria == 'Solução de problemas')
         .toList()
         .length;
 
@@ -82,6 +98,16 @@ abstract class _HomeControllerBase with Store {
         "name": "Atividades",
         'courses': qtdAtividade,
         'image': "assets/images/forms.png"
+      },
+      {
+        "name": "Problemas",
+        'courses': qtdProblema,
+        'image': "assets/images/problema.png"
+      },
+      {
+        "name": "Normas e Decretos",
+        'courses': qtdEquipe,
+        'image': "assets/images/equipe.png"
       },
       {
         "name": "Playlist",

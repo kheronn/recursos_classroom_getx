@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:course_app/app/app_widget.dart';
 import 'package:course_app/app/modules/home/home_module.dart';
 
+import 'modules/categoria/categoria_page.dart';
+import 'modules/home/splash.dart';
+
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
@@ -15,8 +18,10 @@ class AppModule extends MainModule {
 
   @override
   List<Router> get routers => [
-        Router(Modular.initialRoute, module: HomeModule()),
-        Router('/categoria', module: CategoriaModule()),
+        Router(Modular.initialRoute, child: (_, _args) => SplashScreen()),
+        Router('/home', module: HomeModule()),
+        Router('/categoria/:tipo',
+            child: (_, args) => CategoriaPage(tipo: args.params['tipo'])),
       ];
 
   @override
