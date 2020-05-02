@@ -60,7 +60,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                 context: context,
                 builder: (context, scrollController) {
                   return Material(
-                    child: Flexible(
+                    child: Container(
                       child: SearchBar<Recurso>(
                         searchBarStyle: SearchBarStyle(
                           borderRadius: BorderRadius.circular(20),
