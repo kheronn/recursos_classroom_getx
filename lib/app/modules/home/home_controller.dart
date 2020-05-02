@@ -19,6 +19,9 @@ abstract class _HomeControllerBase with Store {
   List<Recurso> recursos;
 
   @observable
+  List<Recurso> recursosFiltro;
+
+  @observable
   String tipo;
 
   @observable
@@ -50,6 +53,17 @@ abstract class _HomeControllerBase with Store {
   filtrarTipo() async {
     recursos = await api.getRecursos();
     recursos = recursos.where((element) => element.publico == query).toList();
+  }
+
+  Future<List<Recurso>> search(String search) async {
+    print(search);
+    recursosFiltro = recursos
+        .where((element) =>
+            element.titulo.toLowerCase().contains(search.toLowerCase()))
+        .toList();
+    return Future.delayed(Duration(milliseconds: 1500)).then((value) {
+      return recursosFiltro;
+    });
   }
 
   @action
@@ -105,7 +119,7 @@ abstract class _HomeControllerBase with Store {
         'image': "assets/images/problema.png"
       },
       {
-        "name": "Normas e Decretos",
+        "name": "Normas",
         'courses': qtdEquipe,
         'image': "assets/images/equipe.png"
       },

@@ -30,7 +30,7 @@ class _CategoriaPageState
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          width: double.infinity,
+          //width: 50,
           decoration: BoxDecoration(
             color: Color(0xFFF5F4EF),
             image: DecorationImage(
@@ -55,10 +55,13 @@ class _CategoriaPageState
                         return Container();
                       } else {
                         return Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
-                           
-                            SizedBox(width: 5),
-                            Text(controller.recursos.length.toString())
+                            CircleAvatar(
+                                child: Text(
+                                    controller.recursos.length.toString())),
+                            SizedBox(width: 2),
+                            Text("recurso(s)", style: kSubtitleTextSyule),
                           ],
                         );
                       }

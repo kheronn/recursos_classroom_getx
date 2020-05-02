@@ -43,6 +43,23 @@ mixin _$HomeController on _HomeControllerBase, Store {
     }, _$recursosAtom, name: '${_$recursosAtom.name}_set');
   }
 
+  final _$recursosFiltroAtom = Atom(name: '_HomeControllerBase.recursosFiltro');
+
+  @override
+  List<Recurso> get recursosFiltro {
+    _$recursosFiltroAtom.context.enforceReadPolicy(_$recursosFiltroAtom);
+    _$recursosFiltroAtom.reportObserved();
+    return super.recursosFiltro;
+  }
+
+  @override
+  set recursosFiltro(List<Recurso> value) {
+    _$recursosFiltroAtom.context.conditionallyRunInAction(() {
+      super.recursosFiltro = value;
+      _$recursosFiltroAtom.reportChanged();
+    }, _$recursosFiltroAtom, name: '${_$recursosFiltroAtom.name}_set');
+  }
+
   final _$tipoAtom = Atom(name: '_HomeControllerBase.tipo');
 
   @override
@@ -128,6 +145,40 @@ mixin _$HomeController on _HomeControllerBase, Store {
     }, _$qtdAtividadeAtom, name: '${_$qtdAtividadeAtom.name}_set');
   }
 
+  final _$qtdEquipeAtom = Atom(name: '_HomeControllerBase.qtdEquipe');
+
+  @override
+  int get qtdEquipe {
+    _$qtdEquipeAtom.context.enforceReadPolicy(_$qtdEquipeAtom);
+    _$qtdEquipeAtom.reportObserved();
+    return super.qtdEquipe;
+  }
+
+  @override
+  set qtdEquipe(int value) {
+    _$qtdEquipeAtom.context.conditionallyRunInAction(() {
+      super.qtdEquipe = value;
+      _$qtdEquipeAtom.reportChanged();
+    }, _$qtdEquipeAtom, name: '${_$qtdEquipeAtom.name}_set');
+  }
+
+  final _$qtdProblemaAtom = Atom(name: '_HomeControllerBase.qtdProblema');
+
+  @override
+  int get qtdProblema {
+    _$qtdProblemaAtom.context.enforceReadPolicy(_$qtdProblemaAtom);
+    _$qtdProblemaAtom.reportObserved();
+    return super.qtdProblema;
+  }
+
+  @override
+  set qtdProblema(int value) {
+    _$qtdProblemaAtom.context.conditionallyRunInAction(() {
+      super.qtdProblema = value;
+      _$qtdProblemaAtom.reportChanged();
+    }, _$qtdProblemaAtom, name: '${_$qtdProblemaAtom.name}_set');
+  }
+
   final _$queryAtom = Atom(name: '_HomeControllerBase.query');
 
   @override
@@ -162,7 +213,7 @@ mixin _$HomeController on _HomeControllerBase, Store {
   @override
   String toString() {
     final string =
-        'categories: ${categories.toString()},recursos: ${recursos.toString()},tipo: ${tipo.toString()},qtdAluno: ${qtdAluno.toString()},qtdProfessor: ${qtdProfessor.toString()},qtdPlayList: ${qtdPlayList.toString()},qtdAtividade: ${qtdAtividade.toString()},query: ${query.toString()}';
+        'categories: ${categories.toString()},recursos: ${recursos.toString()},recursosFiltro: ${recursosFiltro.toString()},tipo: ${tipo.toString()},qtdAluno: ${qtdAluno.toString()},qtdProfessor: ${qtdProfessor.toString()},qtdPlayList: ${qtdPlayList.toString()},qtdAtividade: ${qtdAtividade.toString()},qtdEquipe: ${qtdEquipe.toString()},qtdProblema: ${qtdProblema.toString()},query: ${query.toString()}';
     return '{$string}';
   }
 }

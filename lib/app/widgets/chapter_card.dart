@@ -23,8 +23,8 @@ class ChapterCard extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 2),
-      margin: EdgeInsets.only(bottom: 10, top: 10),
+      padding: EdgeInsets.only(top: 5, bottom: 10, ),
+      margin: EdgeInsets.only(bottom: 5, top:5, left: 5, right: 5),
       width: size.width - 8,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -38,7 +38,7 @@ class ChapterCard extends StatelessWidget {
         ],
       ),
       child: ListTile(
-        contentPadding: EdgeInsets.all(15),
+        contentPadding: EdgeInsets.all(8),
         title: Text(
           name,
           overflow: TextOverflow.visible,

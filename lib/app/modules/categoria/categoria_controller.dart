@@ -18,12 +18,28 @@ abstract class _CategoriaBase with Store {
 
   @action
   filtrar() async {
-    print(tipo);
-    recursos = await api.getRecursos();
-    print(recursos.length.toString());
+       recursos = await api.getRecursos();
     if (tipo == 'Aluno' || tipo == 'Professor') {
-      recursos = recursos.where((element) => element.publico == tipo.toLowerCase()).toList();
+      recursos = recursos
+          .where((element) => element.publico == tipo.toLowerCase())
+          .toList();
     } else {
+      if (tipo.toLowerCase() == 'normas') {
+        tipo = "equipe";
+         recursos = recursos
+          .where((element) => element.publico == tipo.toLowerCase())
+          .toList();
+          return;
+      }
+      if (tipo.toLowerCase() == 'atividades') {
+        tipo = "ClassRoom Atividades";
+      }
+      if (tipo.toLowerCase() == 'problemas') {
+        tipo = "Solução de problemas";
+      }
+      if (tipo.toLowerCase() == 'formação') {
+        tipo = "Formação";
+      }
       recursos =
           recursos.where((element) => element.categoria == tipo).toList();
     }
