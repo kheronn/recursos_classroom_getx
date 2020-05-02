@@ -24,6 +24,26 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
+      drawerEdgeDragWidth: 0,
+      appBar: AppBar(
+        title: Text("Recursos Google",
+            style: TextStyle(
+              fontSize: 26,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            )),
+        backgroundColor: Colors.red.shade300,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.menu),
+            onPressed: () {
+              _scaffoldKey.currentState.openDrawer();
+            },
+          )
+        ],
+        automaticallyImplyLeading: false,
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: SizedBox(
         width: 70.0,
@@ -48,7 +68,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                         searchBarPadding: EdgeInsets.symmetric(horizontal: 5),
                         headerPadding: EdgeInsets.symmetric(horizontal: 1),
                         listPadding: EdgeInsets.symmetric(horizontal: 5),
-                        loader:  Center(child: CircularProgressIndicator()),
+                        loader: Center(child: CircularProgressIndicator()),
                         emptyWidget: Text('Nenhum resultado'),
                         hintText: "O que você está procurando?",
                         shrinkWrap: false,
@@ -79,13 +99,11 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.only(left: 20, top: 50, right: 20),
+        padding: EdgeInsets.only(left: 20, top: 5, right: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(height: 30),
-            Text("Recursos Google", style: kHeadingextStyle),
-            SizedBox(height: 10),
+            SizedBox(height: 15),
             Expanded(
               child: Observer(builder: (_) {
                 List<Recurso> list = controller.recursos;
