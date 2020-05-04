@@ -140,7 +140,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
             ),
             ListTile(
               leading: Icon(Icons.info),
-              title: Text('Aplicativo desenvolvido para organização de recursos EAD para educadores e alunos da rede estadal ',
+              title: Text('Aplicativo desenvolvido para organização de recursos EAD para educadores e alunos da rede estadual do Paraná. ',
               textAlign: TextAlign.justify,
               overflow: TextOverflow.visible,
               ),
