@@ -61,7 +61,7 @@ abstract class _HomeControllerBase with Store {
         .where((element) =>
             element.titulo.toLowerCase().contains(search.toLowerCase()))
         .toList();
-    return Future.delayed(Duration(milliseconds: 1500)).then((value) {
+    return Future.delayed(Duration(milliseconds: 800)).then((value) {
       return recursosFiltro;
     });
   }

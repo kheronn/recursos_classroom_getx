@@ -74,7 +74,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     Padding(
                       padding: const EdgeInsets.only(top: 24.0),
                       child: Text(
-                        'RECURSOS GOOGLE PARA EDUCADORES',
+                        'RECURSOS GOOGLE PARA EDUCADORES E ALUNOS',
                         textAlign: TextAlign.center,
                         style: GoogleFonts.lato(
                             color: Colors.black87,

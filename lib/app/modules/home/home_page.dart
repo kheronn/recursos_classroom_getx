@@ -91,11 +91,61 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
           },
         ),
       ),
-      drawer: UserAccountsDrawerHeader(
-        accountName: Text('Kheronn Khennedy Machado'),
-        accountEmail: Text('CRTE - Wenceslau Braz'),
-        currentAccountPicture: CircleAvatar(
-          child: Image.asset("assets/images/user2.jpg"),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Stack(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: CircleAvatar(
+                      backgroundImage: AssetImage("assets/images/user2.jpg"),
+                      radius: 50.0,
+                    ),
+                  ),
+                  SizedBox(height: 50),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      'Kheronn Khennedy Machado',
+                      style: TextStyle(color: Colors.white, fontSize: 16.0),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight + Alignment(0, .8),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white),
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.all(5.0),
+                        child: Text(
+                          'Organizador/Desenvolvedor',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.work),
+              title: Text('CRTE - Wenceslau Braz'),
+            ),
+            ListTile(
+              leading: Icon(Icons.info),
+              title: Text('Aplicativo desenvolvido para organização de recursos EAD para educadores e alunos da rede estadal ',
+              textAlign: TextAlign.justify,
+              overflow: TextOverflow.visible,
+              ),
+            ),
+          ],
         ),
       ),
       body: Padding(
@@ -110,48 +160,56 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                 if (list == null || list.isEmpty) {
                   return Center(child: CircularProgressIndicator());
                 } else {
-                  return StaggeredGridView.countBuilder(
-                    padding: EdgeInsets.all(1),
-                    crossAxisCount: 2,
-                    itemCount: controller.categories.length,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: () {
-                          Modular.to.pushNamed(
-                              'categoria/${controller.categories[index].name}');
-                        },
-                        child: Container(
-                          padding: EdgeInsets.all(20),
-                          height: index.isEven ? 200 : 240,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(16),
-                            image: DecorationImage(
-                              image: AssetImage(
-                                  controller.categories[index].image),
-                              fit: BoxFit.contain,
+                  return RefreshIndicator(
+                    onRefresh: () {
+                      return Future.delayed(Duration(milliseconds: 800))
+                          .then((value) {
+                        return controller.getQtdRecursos();
+                      });
+                    },
+                    child: StaggeredGridView.countBuilder(
+                      padding: EdgeInsets.all(1),
+                      crossAxisCount: 2,
+                      itemCount: controller.categories.length,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () {
+                            Modular.to.pushNamed(
+                                'categoria/${controller.categories[index].name}');
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(20),
+                            height: index.isEven ? 200 : 240,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16),
+                              image: DecorationImage(
+                                image: AssetImage(
+                                    controller.categories[index].image),
+                                fit: BoxFit.contain,
+                              ),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  controller.categories[index].name,
+                                  style: kTitleTextStyle,
+                                ),
+                                Text(
+                                  '${controller.categories[index].numOfCourses} recursos',
+                                  style: TextStyle(
+                                    color: kTextColor.withOpacity(.5),
+                                  ),
+                                )
+                              ],
                             ),
                           ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                controller.categories[index].name,
-                                style: kTitleTextStyle,
-                              ),
-                              Text(
-                                '${controller.categories[index].numOfCourses} recursos',
-                                style: TextStyle(
-                                  color: kTextColor.withOpacity(.5),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                    staggeredTileBuilder: (index) => StaggeredTile.fit(1),
+                        );
+                      },
+                      staggeredTileBuilder: (index) => StaggeredTile.fit(1),
+                    ),
                   );
                 }
               }),

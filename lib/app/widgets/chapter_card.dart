@@ -23,8 +23,11 @@ class ChapterCard extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Container(
-      padding: EdgeInsets.only(top: 5, bottom: 10, ),
-      margin: EdgeInsets.only(bottom: 5, top:5, left: 5, right: 5),
+      padding: EdgeInsets.only(
+        top: 5,
+        bottom: 10,
+      ),
+      margin: EdgeInsets.only(bottom: 5, top: 5, left: 5, right: 5),
       width: size.width - 8,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -45,7 +48,7 @@ class ChapterCard extends StatelessWidget {
           style: TextStyle(fontSize: 16),
         ),
         subtitle: Text(tag, style: TextStyle(fontWeight: FontWeight.bold)),
-        trailing: GestureDetector(
+        leading: GestureDetector(
           onTap: () async {
             Share.share('$link', subject: '$name');
           },
@@ -58,7 +61,7 @@ class ChapterCard extends StatelessWidget {
             child: Icon(Icons.share, color: Colors.white),
           ),
         ),
-        leading: GestureDetector(
+        trailing: GestureDetector(
           onTap: () async {
             if (await canLaunch(link)) {
               await launch(link);
@@ -68,8 +71,8 @@ class ChapterCard extends StatelessWidget {
           },
           child: Container(
             margin: EdgeInsets.only(left: 10),
-            height: 40,
-            width: 40,
+            height: 50,
+            width: 50,
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: (tipo == "video") ? Colors.red : Colors.green),

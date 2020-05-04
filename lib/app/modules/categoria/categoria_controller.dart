@@ -22,13 +22,13 @@ abstract class _CategoriaBase with Store {
     if (tipo == 'Aluno' || tipo == 'Professor') {
       recursos = recursos
           .where((element) => element.publico == tipo.toLowerCase())
-          .toList();
+          .toList().reversed.toList();
     } else {
       if (tipo.toLowerCase() == 'normas') {
         tipo = "equipe";
          recursos = recursos
           .where((element) => element.publico == tipo.toLowerCase())
-          .toList();
+          .toList().reversed.toList().reversed.toList().reversed.toList();
           return;
       }
       if (tipo.toLowerCase() == 'atividades') {
@@ -41,7 +41,7 @@ abstract class _CategoriaBase with Store {
         tipo = "Formação";
       }
       recursos =
-          recursos.where((element) => element.categoria == tipo).toList();
+          recursos.where((element) => element.categoria == tipo).toList().reversed.toList();
     }
   }
 }
