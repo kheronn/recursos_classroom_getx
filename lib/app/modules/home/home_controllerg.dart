@@ -22,6 +22,7 @@ class HomeControllerG extends GetxController {
 
   @override
   void onInit() {
+    print('Chamou oninit');
     getQtdRecursos();
     super.onInit();
   }
@@ -76,32 +77,32 @@ class HomeControllerG extends GetxController {
     var categoriesData = [
       {
         "name": "Professor",
-        'courses': qtdProfessor,
+        'courses': qtdProfessor.value,
         'image': "assets/images/professor.png"
       },
       {
         "name": "Aluno",
-        'courses': qtdAluno,
+        'courses': qtdAluno.value,
         'image': "assets/images/aluno.png"
       },
       {
         "name": "Atividades",
-        'courses': qtdAtividade,
+        'courses': qtdAtividade.value,
         'image': "assets/images/forms.png"
       },
       {
         "name": "Problemas",
-        'courses': qtdProblema,
+        'courses': qtdProblema.value,
         'image': "assets/images/problema.png"
       },
       {
         "name": "Normas",
-        'courses': qtdEquipe,
+        'courses': qtdEquipe.value,
         'image': "assets/images/equipe.png"
       },
       {
         "name": "Playlist",
-        'courses': qtdPlayList,
+        'courses': qtdPlayList.value,
         'image': "assets/images/playlist.png"
       },
     ];
