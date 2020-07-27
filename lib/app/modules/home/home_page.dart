@@ -1,25 +1,19 @@
 import 'package:course_app/app/constants.dart';
 import 'package:course_app/app/model/recurso.dart';
+import 'package:course_app/app/modules/home/home_controllerg.dart';
 import 'package:course_app/app/widgets/chapter_card.dart';
 import 'package:flappy_search_bar/flappy_search_bar.dart';
 import 'package:flappy_search_bar/search_bar_style.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'home_controller.dart';
+import 'package:get/get.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
-class HomePage extends StatefulWidget {
-  final String title;
-  const HomePage({Key key, this.title = "Home"}) : super(key: key);
-
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends ModularState<HomePage, HomeController> {
+class HomePage extends StatelessWidget {
   //use 'controller' variable to access controller
+  final HomeControllerG controller = Get.find();
+
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
@@ -140,9 +134,10 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
             ),
             ListTile(
               leading: Icon(Icons.info),
-              title: Text('Aplicativo desenvolvido para organização de recursos EAD para educadores e alunos da rede estadual do Paraná. ',
-              textAlign: TextAlign.justify,
-              overflow: TextOverflow.visible,
+              title: Text(
+                'Aplicativo desenvolvido para organização de recursos EAD para educadores e alunos da rede estadual do Paraná. ',
+                textAlign: TextAlign.justify,
+                overflow: TextOverflow.visible,
               ),
             ),
           ],
@@ -155,8 +150,8 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
           children: <Widget>[
             SizedBox(height: 15),
             Expanded(
-              child: Observer(builder: (_) {
-                List<Recurso> list = controller.recursos;
+              child: GetBuilder<HomeControllerG>(builder: (controller) {
+                List<Recurso> list = controller.recursos.value;
                 if (list == null || list.isEmpty) {
                   return Center(child: CircularProgressIndicator());
                 } else {
