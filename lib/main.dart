@@ -7,17 +7,18 @@ import 'package:get/get.dart';
 import 'app/modules/categoria/categoria_bind.dart';
 
 void main() => runApp(GetMaterialApp(
-      // It is not mandatory to use named routes, but dynamic urls are interesting.
       initialRoute: '/home',
       defaultTransition: Transition.native,
       locale: Locale('pt', 'BR'),
       getPages: [
-        //Simple GetPage
-        GetPage(name: '/home', page: () => HomePage(), binding: HomeBind()),
-        // GetPage with custom transitions and bindings
+        GetPage(
+          name: '/home',
+          page: () => HomePage(),
+          binding: HomeBind(),
+        ),
         GetPage(
             name: '/categoria/:tipo',
             page: () => CategoriaPage(),
-            binding: CategoriaBind()),
+            binding: CategoriaBind())
       ],
     ));
