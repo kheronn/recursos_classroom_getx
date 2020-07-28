@@ -22,7 +22,6 @@ class HomeControllerG extends GetxController {
 
   @override
   void onInit() {
-    print('Chamou oninit');
     getQtdRecursos();
     super.onInit();
   }
@@ -34,7 +33,6 @@ class HomeControllerG extends GetxController {
   }
 
   Future<List<Recurso>> search(String search) async {
-    print(search);
     recursosFiltro.value = recursos
         .where((element) =>
             element.titulo.toLowerCase().contains(search.toLowerCase()))
@@ -46,6 +44,7 @@ class HomeControllerG extends GetxController {
 
   getQtdRecursos() async {
     recursos.value = await api.getRecursos();
+
     qtdAluno.value =
         recursos.where((element) => element.publico == 'aluno').toList().length;
 
