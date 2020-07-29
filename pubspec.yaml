@@ -21,10 +21,10 @@ dependencies:
   modal_bottom_sheet: ^0.1.5
   flutter_svg: ^0.18.0
   flutter_staggered_grid_view: ^0.3.0
-  http: ^0.12.0+4
-  url_launcher: ^5.4.2
+  http: ^0.12.2
+  url_launcher: ^5.5.0
   share: ^0.6.4
-  google_fonts:
+  google_fonts: ^1.1.0
   flappy_search_bar: ^1.7.2
 
   flutter:

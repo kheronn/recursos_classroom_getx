@@ -38,12 +38,6 @@ class SplashPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               SizedBox(width: 2.0),
-              /*     Container(
-                width: 400,
-                height: 400,
-                child: FlareActor("assets/images/work.flr",
-                    animation: "animation", fit: BoxFit.contain),
-              ), */
               Container(
                 alignment: Alignment.center,
                 width: 50,

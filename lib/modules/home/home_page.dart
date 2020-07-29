@@ -130,7 +130,7 @@ class HomePage extends StatelessWidget {
       itemBuilder: (context, index) {
         return InkWell(
           onTap: () {
-            Get.toNamed('categoria/${controller.categories[index].name}');
+            Get.toNamed('categoria/${controller.categories[index].nome}');
           },
           child: Container(
             padding: EdgeInsets.all(20),
@@ -146,11 +146,11 @@ class HomePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  controller.categories[index].name,
+                  controller.categories[index].nome,
                   style: kTitleTextStyle,
                 ),
                 Text(
-                  '${controller.categories[index].numOfCourses} recursos',
+                  '${controller.categories[index].qtd} recursos',
                   style: TextStyle(
                     color: kTextColor.withOpacity(.5),
                   ),

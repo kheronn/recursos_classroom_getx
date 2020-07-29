@@ -1,10 +1,10 @@
-import 'package:course_app/models/category.dart';
+import 'package:course_app/models/categoria.dart';
 import 'package:course_app/models/recurso.dart';
 import 'package:course_app/repositories/recurso_api.dart';
 import 'package:get/get.dart';
 
 class HomeControllerG extends GetxController {
-  final categories = List<Category>().obs;
+  final categories = List<Categoria>().obs;
   final recursos = List<Recurso>().obs;
   final recursosFiltro = List<Recurso>().obs;
 
@@ -107,7 +107,7 @@ class HomeControllerG extends GetxController {
     ];
 
     categories.value = categoriesData
-        .map((item) => Category(item['name'], item['courses'], item['image']))
+        .map((item) => Categoria(item['name'], item['courses'], item['image']))
         .toList();
   }
 }

@@ -1,4 +1,3 @@
-import 'package:course_app/modules/home/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,7 +13,10 @@ void main() => runApp(GetMaterialApp(
       defaultTransition: Transition.native,
       locale: Locale('pt', 'BR'),
       getPages: [
-        GetPage(name: "/", page: () => SplashPage()),
+        GetPage(
+          name: "/",
+          page: () => SplashPage(),
+        ),
         GetPage(
           name: '/home',
           page: () => HomePage(),
