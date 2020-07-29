@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ChapterCard extends StatelessWidget {
+class RecursoCard extends StatelessWidget {
   final String name;
   final String tag;
   final String link;
   final String tipo;
   final int chapterNumber;
   final Function press;
-  const ChapterCard({
+  const RecursoCard({
     Key key,
     this.name,
     this.tag,

@@ -1,16 +1,20 @@
-import 'package:course_app/app/modules/categoria/categoria_page.dart';
-import 'package:course_app/app/modules/home/home_bind.dart';
-import 'package:course_app/app/modules/home/home_page.dart';
+import 'package:course_app/modules/home/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'app/modules/categoria/categoria_bind.dart';
+import 'modules/categoria/categoria_bind.dart';
+import 'modules/categoria/categoria_page.dart';
+import 'modules/home/home_bind.dart';
+import 'modules/home/home_page.dart';
+import 'modules/home/splash_page.dart';
 
 void main() => runApp(GetMaterialApp(
-      initialRoute: '/home',
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/',
       defaultTransition: Transition.native,
       locale: Locale('pt', 'BR'),
       getPages: [
+        GetPage(name: "/", page: () => SplashPage()),
         GetPage(
           name: '/home',
           page: () => HomePage(),

@@ -1,29 +1,21 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SplashScreen extends StatefulWidget {
-  @override
-  _SplashScreenState createState() => _SplashScreenState();
-}
+class SplashPage extends StatelessWidget {
+  SplashPage() {
+    startTimeout();
+  }
 
-class _SplashScreenState extends State<SplashScreen> {
   startTimeout() async {
     return Timer(Duration(seconds: 6), changeScreen);
   }
 
   changeScreen() async {
-    Modular.to.pushReplacementNamed('/home');
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    // SystemChrome.setEnabledSystemUIOverlays([]);
-    startTimeout();
+    Get.toNamed('/home');
   }
 
   @override
@@ -79,7 +71,6 @@ class _SplashScreenState extends State<SplashScreen> {
                         style: GoogleFonts.lato(
                             color: Colors.black87,
                             fontSize: 20,
-                            
                             fontWeight: FontWeight.w700),
                       ),
                     )

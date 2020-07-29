@@ -1,17 +1,16 @@
 import 'package:course_app/app/constants.dart';
-import 'package:course_app/app/model/recurso.dart';
-import 'package:course_app/app/modules/home/home_controllerg.dart';
-import 'package:course_app/app/widgets/chapter_card.dart';
+import 'package:course_app/app/widgets/recurso_card.dart';
+import 'package:course_app/models/recurso.dart';
 import 'package:flappy_search_bar/flappy_search_bar.dart';
 import 'package:flappy_search_bar/search_bar_style.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
+import 'home_controllerg.dart';
+
 class HomePage extends StatelessWidget {
-  //use 'controller' variable to access controller
   final HomeControllerG controller = Get.find();
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -105,7 +104,7 @@ class HomePage extends StatelessWidget {
                 shrinkWrap: false,
                 cancellationWidget: Text("Cancelar"),
                 onItemFound: (Recurso model, int index) {
-                  return ChapterCard(
+                  return RecursoCard(
                       name: model.titulo,
                       chapterNumber: (index + 1),
                       tag: model.autoria,

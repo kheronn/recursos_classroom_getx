@@ -1,6 +1,7 @@
-import 'package:course_app/app/modules/home/home_controllerg.dart';
-import 'package:course_app/app/repositories/recurso_api.dart';
+import 'package:course_app/repositories/recurso_api.dart';
 import 'package:get/get.dart';
+
+import 'home_controllerg.dart';
 
 class HomeBind extends Bindings {
   @override

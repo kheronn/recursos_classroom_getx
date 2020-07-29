@@ -1,6 +1,6 @@
-import 'package:course_app/app/model/category.dart';
-import 'package:course_app/app/model/recurso.dart';
-import 'package:course_app/app/repositories/recurso_api.dart';
+import 'package:course_app/models/category.dart';
+import 'package:course_app/models/recurso.dart';
+import 'package:course_app/repositories/recurso_api.dart';
 import 'package:get/get.dart';
 
 class HomeControllerG extends GetxController {
