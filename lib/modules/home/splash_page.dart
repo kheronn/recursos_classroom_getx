@@ -23,14 +23,7 @@ class SplashPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: const FractionalOffset(0.5, 0.0),
-              end: const FractionalOffset(0.0, 0.5),
-              stops: [0.0, 1.0],
-              tileMode: TileMode.clamp,
-              colors: [Colors.white54, Colors.lightBlue.shade100]),
-        ),
+        decoration: _buildFundoGradiente(),
         margin: EdgeInsets.only(left: 4.0, right: 4.0),
         child: Center(
           child: Column(
@@ -75,6 +68,17 @@ class SplashPage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  BoxDecoration _buildFundoGradiente() {
+    return BoxDecoration(
+      gradient: LinearGradient(
+          begin: const FractionalOffset(0.5, 0.0),
+          end: const FractionalOffset(0.0, 0.5),
+          stops: [0.0, 1.0],
+          tileMode: TileMode.clamp,
+          colors: [Colors.white54, Colors.lightBlue.shade100]),
     );
   }
 }
